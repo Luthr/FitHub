@@ -44,12 +44,14 @@ class PostController extends Controller
         // validate the data
         $this->validate($request, array(
             'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required'
           ));
         // store in database
         $post = new Post;
 
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
         $post->save();
 
@@ -99,11 +101,13 @@ class PostController extends Controller
         // Validate the data, same as 'store'
         $this->validate($request, array(
             'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required'
           ));
         // Save the data to the database
         $post = Post::find($id);
         $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
         $post->body = $request->input('body');
 
         $post->save();

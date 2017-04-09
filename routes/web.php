@@ -13,14 +13,18 @@
 
 //If you visit a home page a view called 'welcome' is displayed - views are found in resources
 
-Route::get('contact', 'PagesController@getContact');
 
-Route::get('about', 'PagesController@getAbout');
+Route::group(['middleware' => ['web']], function () {
 
-Route::get('/', 'PagesController@getIndex');
+  // ie: domain/blog/slug-goes-here
+  Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])
+    ->where('slug', '[\w\d\-\_]+');
 
-Route::get('blog', 'PagesController@getBlog');
+  Route::get('contact', 'PagesController@getContact');
+  Route::get('about', 'PagesController@getAbout');
+  Route::get('/', 'PagesController@getIndex');
+  Route::get('blog', ['uses' => 'BlogController@getindex', 'as' => 'blog.index']);
+  Route::get('admin', 'PagesController@getAdmin');
+  Route::resource('posts', 'PostController');
 
-Route::get('admin', 'PagesController@getAdmin');
-
-Route::resource('posts', 'PostController');               
+});
