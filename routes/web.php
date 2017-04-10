@@ -13,15 +13,8 @@
 
 //If you visit a home page a view called 'welcome' is displayed - views are found in resources
 
-//**** Ask aaron if this is needed
+
 Route::group(['middleware' => ['web']], function () {
-  //Authentication routes
-  //Route::get('auth/login', 'Auth\LoginController@getLogin');
-  //Route::post('auth/login', 'Auth\LoginController@postLogin');
-  //Route::get('auth/logout', 'Auth\LoginController@getLogout');
-  // Registration routes
-  //Route::get('auth/register', 'Auth\RegisterController@getRegister');
-  //Route::post('auth/register', 'Auth\RegisterController@postRegister');
 
   // ie: domain/blog/slug-goes-here
   Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])
@@ -31,10 +24,14 @@ Route::group(['middleware' => ['web']], function () {
   Route::get('/', 'PagesController@getIndex');
   Route::get('blog', ['uses' => 'BlogController@getindex', 'as' => 'blog.index']);
   Route::get('admin', 'PagesController@getAdmin');
+  // Posts
   Route::resource('posts', 'PostController');
 
-});
+  // Categorires - removed create route
+  Route::resource('categories', 'CategoryController', ['except'=> ['create']]);
 
-//shortcut for defining auth/reg/reset routes
-Auth::routes();
-Route::get('/home', 'HomeController@index');
+  //shortcut for defining auth/reg/reset routes
+  Auth::routes();
+  Route::get('/home', 'HomeController@index');
+
+});
