@@ -7,6 +7,7 @@
     @include('partials._nav')
     @include('partials._messages')
     <div class="container">
+      {{ Auth::check() ? "Logged in" : "Logged Out" }}
       @yield('content')
       @include('partials._footer')
     </div>
