@@ -28,7 +28,7 @@ Route::group(['middleware' => ['web']], function () {
   Route::resource('posts', 'PostController');
 
   // Categorires - removed create route
-  Route::resource('categories', 'CategoryController', ['except'=> ['create']]);
+  Route::resource('category', 'CategoryController', ['except'=> ['create']]);
 
   //shortcut for defining auth/reg/reset routes
   Auth::routes();

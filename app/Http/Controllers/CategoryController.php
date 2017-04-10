@@ -48,7 +48,7 @@ class CategoryController extends Controller
         Session::flash('success', 'New Category Created!'); //flash= only let it exist for one request
         // redirect to another page
         // passes post id
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 
     /**
