@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tag;
+use App\Post;
 use Session;
 
 class TagController extends Controller
@@ -106,6 +107,10 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $tag = Tag::find($id);
+      $tag->posts()->detach();
+      $tag->delete();
+      Session::flash('success', 'Tag Successfully Deleted');
+      return redirect()->route('tags.index');
     }
 }
