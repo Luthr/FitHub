@@ -30,6 +30,9 @@ Route::group(['middleware' => ['web']], function () {
   // Categorires - removed create route
   Route::resource('category', 'CategoryController', ['except'=> ['create']]);
 
+  // Tages routes - removed create route
+  Route::resource('tags', 'TagController', ['except'=> ['create']]);
+
   //shortcut for defining auth/reg/reset routes
   Auth::routes();
   Route::get('/home', 'HomeController@index');
