@@ -7,6 +7,13 @@
       <h1>{{ $post->title }}</h1>
       <p>{{ $post->body }}</p>
       <hr>
+      <div class="tags">
+        @foreach ($post->tags as $tag)
+          <span class="label label-default"> {{ $tag->name }}</span>
+
+        @endforeach
+      </div>
+      <hr>
       <p>Posted In: {{ $post->category->name }}</p>
     </div>
   </div>

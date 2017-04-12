@@ -19,18 +19,18 @@ Route::group(['middleware' => ['web']], function () {
   // ie: domain/blog/slug-goes-here
   Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])
     ->where('slug', '[\w\d\-\_]+');
+
   Route::get('contact', 'PagesController@getContact');
+  Route::post('contact', 'PagesController@postContact');
+
   Route::get('about', 'PagesController@getAbout');
   Route::get('/', 'PagesController@getIndex');
   Route::get('blog', ['uses' => 'BlogController@getindex', 'as' => 'blog.index']);
   Route::get('admin', 'PagesController@getAdmin');
-  // Posts
+
+  // Posts/Categorires/Tag Crud
   Route::resource('posts', 'PostController');
-
-  // Categorires - removed create route
   Route::resource('category', 'CategoryController', ['except'=> ['create']]);
-
-  // Tages routes - removed create route
   Route::resource('tags', 'TagController', ['except'=> ['create']]);
 
   //shortcut for defining auth/reg/reset routes

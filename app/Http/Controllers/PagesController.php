@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
+
+use App\Http\Requests;
 use App\Post;
+use Mail;
+use Session;
 
 class PagesController extends Controller {
 
@@ -26,11 +32,11 @@ class PagesController extends Controller {
 
   public function getAbout() {
 
-      $first = 'Dean';
-      $last = 'Porter';
+      $first    = 'Dean';
+      $last     = 'Porter';
       $fullname = $first . " " . $last;
-      $email = "deanporter_7@hotmail.com";
-      $data = [];
+      $email    = "deanporter_7@hotmail.com";
+      $data     = [];
       $data['email']= $email;
       $data['fullname']= $fullname;
       return view('pages.about')->withData($data);
@@ -40,16 +46,25 @@ class PagesController extends Controller {
        return view('pages.contact');
   }
 
-  public function getBlog() {
-       return view('pages.blog');
+  public function postContact(Request $request) {
+       $this->validate($request, [
+         'email'    => 'required|email',
+         'subject'  => 'min:4',
+         'message'  => 'min:15']);
+
+         $data = array(
+           'email'        => $request->email,
+           'subject'      => $request->subject,
+           'emailMessage' => $request->message
+         );
+
+         Mail::send('emails.contact', $data, function($message) use ($data){
+          $message->from($data['email']);
+          $message->to('fithub.now@gmail.com');
+          $message->subject($data['subject']);
+       });
+
+       Session::flash('success', 'Your Email Has Been Sent!');
+       return redirect('/');
   }
-
-  public function getAdmin() {
-       return view('pages.admin');
-  }
-
-
-
-
-
 }

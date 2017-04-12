@@ -15,6 +15,12 @@
 
         <p>{{ substr($post->body, 0, 250)}}{{strlen($post->body) > 250 ? '...' : ""}} </p>
         <a href="{{ url('blog/'.$post->slug)}}" class="btn btn-primary">Read More</a>
+
+          @foreach ($post->tags as $tag)
+            <span class="label label-default"> {{ $tag->name }}</span>
+
+          @endforeach
+
         <hr>
     </div>
   </div>
