@@ -8,6 +8,7 @@ use App\Post;
 use App\Category;
 use App\Tag;
 use Session; // allows us to access session class
+use Purifier; // Enables the use of purifier
 
 class PostController extends Controller
 {
@@ -60,7 +61,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
-        $post->body = $request->body;
+        $post->body = Purifier::clean($request->body);
         $post->save();
 
         // attaching tag array associations
@@ -146,7 +147,8 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
         $post->category_id = $request->input('category_id');
-        $post->body = $request->input('body');
+        $post->body = Purifier::clean($request->input('body'));
+
 
         $post->save();
         // Save tags - taken out 'true' to overwrite on edit
