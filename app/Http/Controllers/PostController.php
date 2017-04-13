@@ -10,6 +10,7 @@ use App\Tag;
 use Session; // allows us to access session class
 use Purifier; // Enables the use of purifier
 use Image;
+use Storage;
 
 class PostController extends Controller
 {
@@ -51,10 +52,11 @@ class PostController extends Controller
     {
         // validate the data
         $this->validate($request, array(
-            'title'       => 'required|max:255',
-            'slug'        => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-            'category_id' => 'required|integer',
-            'body'        => 'required'
+            'title'         => 'required|max:255',
+            'slug'          => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'category_id'   => 'required|integer',
+            'slected_image' =>'sometimes|image',
+            'body'          => 'required'
           ));
         // store post in database
         $post = new Post;
@@ -138,23 +140,13 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        if ($request->input('slug') == $post->slug) {
-            // Validate the data, same as 'store'
             $this->validate($request, array(
-                'title' => 'required|max:255',
-                'category_id' => 'required|integer',
-                'body' => 'required'
-            ));
-          } else {
-            $this->validate($request, array(
-                'title' => 'required|max:255',
-                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-                'category_id' => 'required|integer',
-                'body' => 'required'
+                'title'           => 'required|max:255',
+                'slug'            => "required|alpha_dash|min:5|max:255|unique:posts,slug, $id",
+                'category_id'     => 'required|integer',
+                'body'            => 'required',
+                'selected_image'  => 'sometimes|image'
               ));
-          }
-
-
 
         // Save the data to the database
         $post = Post::find($id);
@@ -163,6 +155,20 @@ class PostController extends Controller
         $post->category_id = $request->input('category_id');
         $post->body = Purifier::clean($request->input('body'));
 
+        // If photo uploaded
+        if ($request->hasFile('selected_image')) {
+          // Add the new photo
+          $image = $request->file('selected_image');
+          $filename = time() . '.' . $image->getClientOriginalExtension();
+          $location = public_path('images/' . $filename);
+          Image::make($image)->resize(800,400)->save($location);
+          $previousFilename = $post->image;
+          // Update the image name within posts database
+          $post->image = $filename;
+          // Delete the old photo
+          Storage::delete($previousFilename);
+
+        }
 
         $post->save();
         // Save tags - taken out 'true' to overwrite on edit
@@ -183,6 +189,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->tags()->detach();
+        Storage::delete($post->image);
         $post->delete();
         Session::flash('success', 'Post Successfully Deleted');
         return redirect()->route('posts.index');
