@@ -9,6 +9,7 @@ use App\Category;
 use App\Tag;
 use Session; // allows us to access session class
 use Purifier; // Enables the use of purifier
+use Image;
 
 class PostController extends Controller
 {
@@ -55,13 +56,26 @@ class PostController extends Controller
             'category_id' => 'required|integer',
             'body'        => 'required'
           ));
-        // store in database
+        // store post in database
         $post = new Post;
 
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
         $post->body = Purifier::clean($request->body);
+
+        //saving the image
+        if ($request->hasFile('selected_image')) {
+          $image = $request->file('selected_image');
+          $filename = time() . '.' . $image->getClientOriginalExtension();
+          $location = public_path('images/' . $filename);
+          Image::make($image)->resize(800,400)->save($location);
+
+          // So application can find File - saving the filename
+          $post->image = $filename;
+
+        }
+
         $post->save();
 
         // attaching tag array associations
