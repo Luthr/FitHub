@@ -1,5 +1,5 @@
 <!-- Default Bootstrap Navbar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -15,10 +15,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="{{ Request::is('/') ? "active" : ""}}"><a href="/"><i class="fa fa-home fa-fw"></i> Home</a></li>
-            <li class="{{ Request::is('blog') ? "active" : ""}}"><a href="/blog"><i class="fa fa-commenting-o fa-fw"></i> Blog</a></li>
-            <li class="{{ Request::is('about') ? "active" : ""}}"><a href="/about"><i class="fa fa-user fa-fw"></i>  About</a></li>
-            <li class="{{ Request::is('contact') ? "active" : ""}}"><a href="/contact"><i class="fa fa-envelope fa-fw"></i> Contact</a></li>
+            <li class="{{ Request::is('/') ? "active" : ""}}"><a href="/">Home</a></li>
+            <li class="{{ Request::is('blog') ? "active" : ""}}"><a href="/blog">Blog</a></li>
+            <li class="{{ Request::is('about') ? "active" : ""}}"><a href="/about">About</a></li>
+            <li class="{{ Request::is('contact') ? "active" : ""}}"><a href="/contact">Contact</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">

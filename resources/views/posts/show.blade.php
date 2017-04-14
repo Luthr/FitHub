@@ -1,6 +1,7 @@
 @extends('main')
 @section('title', ' | View Post')
 @section('content')
+<div class="container">
 <div class='row'>
   <div class='col-md-8'>
       <h1>{{ $post->title }}</h1>
@@ -57,5 +58,6 @@
         </div>
     </div>
   </div>
+</div>
 </div>
 @endsection

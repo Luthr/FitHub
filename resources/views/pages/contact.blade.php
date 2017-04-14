@@ -1,12 +1,12 @@
 @extends ('main')
 @section('title', ' | Contact Us')
 @section('content')
-
+  <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h1>Contact Me</h1>
           <hr>
-          <form action="{{ url('contact') }}" method="POST">
+          <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="{{ url('contact') }}" method="POST">
             {{ csrf_field() }}
             <div class="form-group">
               <label name="email">Email:</label>
@@ -29,8 +29,8 @@
 
             <input type="submit" value="Send Message" class="btn btn-success">
           </form>
-
       </div>
 
     </div>
+  </div>
 @endsection

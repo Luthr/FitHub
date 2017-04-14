@@ -25,7 +25,7 @@ class PagesController extends Controller {
 
   public function getIndex() {
       // order data
-      $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+      $posts = Post::orderBy('created_at', 'desc')->limit(5)->get();
       // return view and pass in posts
       return view('pages.welcome')->withPosts($posts);
   }

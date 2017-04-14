@@ -3,7 +3,7 @@
 @section('title', ' | All Posts')
 
 @section('content')
-
+  <div class="container">
   <div class="row">
     <div class="col-md-10">
       <h1>All Posts</h1>
@@ -42,5 +42,6 @@
       </div>
 
     </div>
+  </div>
   </div>
 @endsection

@@ -17,6 +17,7 @@
 @endsection
 
 @section('content')
+<div class="container">
   <div class='row'>
     {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files'=>true]) !!}
     <div class="col-md-8">
@@ -64,6 +65,7 @@
     </div>
     {!! Form::close() !!}
   </div><!-- end of row -->
+  </div>
 
 @endsection
 
