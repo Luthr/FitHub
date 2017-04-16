@@ -59,7 +59,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+      $category = Category::find($id);
+      return view('categories.show')->withCategory($category);
     }
 
     /**
@@ -69,9 +70,10 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-    }
+      {
+        $category = Category::find($id);
+        return view('category.edit')->withCategory($category);
+      }
 
     /**
      * Update the specified resource in storage.
@@ -82,7 +84,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $category = Category::find($id);
+
+      $this->validate($request,
+          ['name' => 'required|max:20']);
+
+      $category->name = $request->name;
+
+      $category->save();
+
+      Session::flash('success', 'Catgory Update Successful');
+      // Redirect with flash data to categories index
+      return redirect()->route('category.show', $category->id);
     }
 
     /**
@@ -91,8 +104,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+      $category->delete();
+      Session::flash('success', 'Category Successfully Deleted');
+      return redirect()->route('category.index');
     }
 }

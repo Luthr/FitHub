@@ -3,7 +3,7 @@
 @section('title', ' | All Categories')
 
 @section('content')
-
+<div class="container page-margin-top">
   <div class="row page-margin-top">
     <div class="col-md-8">
       <h1>Categories</h1>
@@ -18,7 +18,7 @@
           @foreach ($categories as $category)
             <tr>
               <th> {{  $category->id }} </th>
-              <td> {{  $category->name }} </td>
+              <td> <a href='{{route('category.show', $category->id)}}'>{{  $category->name }} </td>
             </tr>
           @endforeach
         </tbody>
@@ -35,6 +35,7 @@
       </div>
     </div>
   </div>
+</div>
 
 
 @endsection

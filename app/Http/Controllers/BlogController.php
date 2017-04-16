@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use Purifier; // Enables the use of purifier
 
 
@@ -12,8 +13,8 @@ class BlogController extends Controller
 
     public function getIndex() {
       $posts = Post::orderBy('id', 'desc')->paginate(5);
-
-      return view('blog.index')->withPosts($posts);
+      $alltags = Tag::all();
+      return view('blog.index')->withPosts($posts)->withTags($alltags);
 
     }
 

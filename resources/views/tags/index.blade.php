@@ -1,4 +1,4 @@
-@extends('main')
+homescd @extends('main')
 
 @section('title', ' | All Tags')
 

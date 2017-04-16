@@ -41,7 +41,7 @@
             <div class="w3-col m4 w3-hide-small">
               <p>
               @foreach ($post->tags as $tag)
-                <span class="  form-spacing-top w3-tag w3-light-grey w3-small w3-margin-bottom">{{ $tag->name }}</span>
+                <a href='{{route('tags.show', $tag->id)}}'><span class="  form-spacing-top w3-tag w3-light-grey w3-small w3-margin-bottom">{{ $tag->name }}</span></a>
               @endforeach
               </p>
             </div>
@@ -88,8 +88,8 @@
       </div>
       <div class="w3-container w3-white">
       <p>
-        @foreach ($post->tags as $tag)
-          <span class="  form-spacing-top w3-tag w3-light-grey w3-small w3-margin-bottom">{{ $tag->name }}</span>
+        @foreach ($tags as $tag)
+          <a href='{{route('tags.show', $tag->id)}}'><span class="  form-spacing-top w3-tag w3-light-grey w3-small w3-margin-bottom">{{ $tag->name }}</span></a>
         @endforeach
       </p>
       </div>
