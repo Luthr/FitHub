@@ -3,7 +3,7 @@
 @section('title', ' | All Posts')
 
 @section('content')
-  <div class="container">
+  <div class="container page-margin-top">
   <div class="row">
     <div class="col-md-10">
       <h1>All Posts</h1>

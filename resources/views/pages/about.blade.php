@@ -3,7 +3,7 @@
 @section('title', ' | Homepage')
 @section('content')
 
-  <div class="container">
+  <div class="container page-margin-top">
 
         <div class="row">
           <div class="col-md-12">
@@ -14,4 +14,4 @@
 
       </div>
   <!-- end of .container -->
-@endsection  
+@endsection

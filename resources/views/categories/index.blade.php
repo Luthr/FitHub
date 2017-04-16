@@ -4,7 +4,7 @@
 
 @section('content')
 
-  <div class="row">
+  <div class="row page-margin-top">
     <div class="col-md-8">
       <h1>Categories</h1>
       <table class='table'>

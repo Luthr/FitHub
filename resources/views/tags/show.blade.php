@@ -3,8 +3,8 @@
 @section('title', " | $tag->name Tag")
 
 @section('content')
-
-  <div class="row">
+  <div class="container page-margin-top">
+  <div class="row page-margin-top">
 		<div class="col-md-8">
 			<h1>{{ $tag->name }} Tag <span class="label label-default">{{ $tag->posts()->count() }} Posts</span></h1>
 		</div>
@@ -44,6 +44,7 @@
         </tbody>
       </table>
     </div>
+  </div>
 </div>
 
 @endsection

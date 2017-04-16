@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container page-margin-top">
   <div class='row'>
     {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files'=>true]) !!}
     <div class="col-md-8">

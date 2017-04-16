@@ -32,14 +32,7 @@ class PagesController extends Controller {
 
   public function getAbout() {
 
-      $first    = 'Dean';
-      $last     = 'Porter';
-      $fullname = $first . " " . $last;
-      $email    = "deanporter_7@hotmail.com";
-      $data     = [];
-      $data['email']= $email;
-      $data['fullname']= $fullname;
-      return view('pages.about')->withData($data);
+      return view('pages.about');
   }
 
   public function getContact() {
@@ -48,14 +41,19 @@ class PagesController extends Controller {
 
   public function postContact(Request $request) {
        $this->validate($request, [
-         'email'    => 'required|email',
-         'subject'  => 'min:4',
-         'message'  => 'min:15']);
+          'firstname'   => 'required',
+          'lastname'    => 'required',
+          'email'       => 'required|email',
+          'subject'     => 'min:4|max:30',
+          'message'     => 'required']);
 
          $data = array(
-           'email'        => $request->email,
-           'subject'      => $request->subject,
-           'emailMessage' => $request->message
+           'firstname'  => $request->firstname,
+           'lastname'   => $request->lastname,
+           'email'      => $request->email,
+           'phone'      => $request->phone,
+           'subject'    => $request->subject,
+           'emailMessage'    => $request->message
          );
 
          Mail::send('emails.contact', $data, function($message) use ($data){

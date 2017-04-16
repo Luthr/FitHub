@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Purifier; // Enables the use of purifier
 
 
 class BlogController extends Controller
