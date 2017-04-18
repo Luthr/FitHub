@@ -5,8 +5,8 @@
   </head>
   <body class="w3-light-grey">
     @include('partials._nav')
+    @include('partials._messages')
     <div class="w3-container">
-      @include('partials._messages')
       @yield('content')
       @include('partials._footer')
     </div>

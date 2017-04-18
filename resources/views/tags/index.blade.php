@@ -1,13 +1,13 @@
-homescd @extends('main')
+@extends('main')
 
 @section('title', ' | All Tags')
 
 @section('content')
   <div class="container page-margin-top">
-  <div class="row page-margin-top">
+  <div class="row">
     <div class="col-md-8">
-      <h1>Tags</h1>
-      <table class="table">
+      <h1>All Tags</h1>
+      <table class="table form-spacing-top">
         <thead>
           <th>#</th>
           <th>Title</th>

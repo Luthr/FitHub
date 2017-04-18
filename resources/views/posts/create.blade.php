@@ -26,7 +26,7 @@
       {{ Form::label('title', 'Title:')}}
         {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))}}
 
-        {{ Form::label('slug', 'Slug:')}}
+        {{ Form::label('slug', 'Post Heading:')}}
         {{ Form::text('slug', null, array('class'=> 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255'))}}
 
         {{ Form::label('category', "Category:")}}
@@ -45,7 +45,7 @@
 
         {{ Form::label('selected_image', "Upload Selected Image:")}}
         {{ Form::file("selected_image")}}
-
+        <hr>
 
         {{ Form::label('body', "Post Body:")}}
         {{ Form::textarea('body', null, array('class' => 'form-control'))}}

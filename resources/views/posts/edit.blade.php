@@ -1,7 +1,5 @@
 @extends('main')
-
 @section('title', ' | Edit Blog Post')
-
 @section('stylesheets')
   {!! Html::style('css/parsley.css') !!}
   {!! Html::style('css/select2.min.css') !!}

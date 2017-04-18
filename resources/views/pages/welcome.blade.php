@@ -15,20 +15,16 @@
 <div class="w3-content w3-container w3-padding-64" id="about">
   <h3 class="w3-center">ABOUT ME</h3>
   <p class="w3-center"><em>l enjoy helping to bring out potential</em></p>
-  <p>I have been involved in exercise and training essentially my whole life, starting martial arts from a young age. I truly love to push my body and
-    mind through the medium of exercise, improving and developing my health and fitness. The invigorating and uplifting feeling I get from accomplishing
-    the most intense of sessions is hard to beat. I am in constant competition with myself and enjoy the challenge to outdo my previous performances.</p>
+  <p>{!! $content->about !!}</p>
   <div class="w3-row">
     <div class="w3-col m6 w3-center w3-padding-large">
       <p><b><i class="fa fa-user w3-margin-right"></i>Andrea Young</b></p><br>
-      <img src="images/pt.jpg" class="w3-round w3-image" alt="Photo of Me" width="500" height="333">
+      <img src="{{ asset('images/' . $content->image)}}" class="w3-image" alt="Photo of Me" width="500" height="333">
     </div>
 
     <!-- Hide this text on small devices -->
     <div class="w3-col m6 w3-hide-small w3-padding-large">
-      <p>Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>{!! $content->website !!}</p>
     </div>
   </div>
   <p class="w3-large w3-center w3-padding-16">Your Goals - My Specialization:</p>
@@ -75,7 +71,7 @@
 <!-- Container (Portfolio Section) -->
 <div class="w3-content w3-container w3-padding-64" id="portfolio">
   <h3 class="w3-center">MY WORK</h3>
-  <p class="w3-center"><em>Here are some of my latest lorem work ipsum tipsum.<br> Click on the images to make them bigger</em></p><br>
+  <p class="w3-center">{!! $content->portfolio !!}</p><br>
 
   <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
   <div class="w3-row-padding w3-center">

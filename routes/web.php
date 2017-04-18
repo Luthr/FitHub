@@ -24,17 +24,15 @@ Route::group(['middleware' => ['web']], function () {
   Route::post('contact', 'PagesController@postContact');
 
   Route::get('about', 'PagesController@getAbout');
-  Route::get('/', 'PagesController@getIndex');
+  Route::get('/', ['uses' => 'PagesController@getindex', 'as' => 'pages.welcome']);
   Route::get('blog', ['uses' => 'BlogController@getindex', 'as' => 'blog.index']);
-  Route::get('admin', 'PagesController@getAdmin');
 
   // Posts/Categorires/Tag Crud
   Route::resource('posts', 'PostController');
   Route::resource('category', 'CategoryController', ['except'=> ['create']]);
   Route::resource('tags', 'TagController', ['except'=> ['create']]);
-
+  Route::resource('content', 'ContentController');
   //shortcut for defining auth/reg/reset routes
   Auth::routes();
-  Route::get('/home', 'HomeController@index');
 
 });

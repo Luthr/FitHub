@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Post;
+use App\Content;
 use Mail;
 use Session;
+use Purifier; // Enables the use of purifier
 
 class PagesController extends Controller {
 
@@ -24,10 +26,11 @@ class PagesController extends Controller {
 
 
   public function getIndex() {
+          // dd($content);
       // order data
-      $posts = Post::orderBy('created_at', 'desc')->limit(5)->get();
+      $content = Content::find(1);
       // return view and pass in posts
-      return view('pages.welcome')->withPosts($posts);
+      return view('pages.welcome')->withContent($content);
   }
 
   public function getAbout() {
@@ -39,22 +42,21 @@ class PagesController extends Controller {
        return view('pages.contact');
   }
 
-  public function postContact(Request $request) {
-       $this->validate($request, [
-          'firstname'   => 'required',
-          'lastname'    => 'required',
-          'email'       => 'required|email',
-          'subject'     => 'min:4|max:30',
-          'message'     => 'required']);
-
-         $data = array(
-           'firstname'  => $request->firstname,
-           'lastname'   => $request->lastname,
-           'email'      => $request->email,
-           'phone'      => $request->phone,
-           'subject'    => $request->subject,
-           'emailMessage'    => $request->message
-         );
+    public function postContact(Request $request) {
+         $this->validate($request, [
+            'firstname'   => 'required',
+            'lastname'    => 'required',
+            'email'       => 'required|email',
+            'subject'     => 'min:4|max:30',
+            'message'     => 'required']);
+           $data = array(
+             'firstname'  => $request->firstname,
+             'lastname'   => $request->lastname,
+             'email'      => $request->email,
+             'phone'      => $request->phone,
+             'subject'    => $request->subject,
+             'emailMessage'    => $request->message
+           );
 
          Mail::send('emails.contact', $data, function($message) use ($data){
           $message->from($data['email']);
