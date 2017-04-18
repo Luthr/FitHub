@@ -34,10 +34,6 @@
                   <li><a href="{{ route('logout') }}">Log Out</a></li>
                 </ul>
               </li>
-            @else
-
-              <a href="{{ route('login') }}" class="btn btn-default">Login</a>
-
             @endif
           </ul>
         </div>

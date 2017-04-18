@@ -1,5 +1,7 @@
-@extends('main')
+@extends('_layout')
+
 @section('title',' | ' . $post->title)
+
 @section('content')
 
   <div class="container page-margin-top">
