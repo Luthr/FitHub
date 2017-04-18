@@ -1,16 +1,7 @@
-@extends('main')
+@extends('_layout')
+
 @section('title', ' | Content Update')
-@section('stylesheets')
-{!! Html::style('css/parsley.css') !!}
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-<script>
-   tinymce.init({
-     selector: "textarea",
-     plugins: "link",
-     menubar: false
-     });
-</script>
-@endsection
+
 @section('content')
 <div class="container page-margin-top">
    <div class="row">
@@ -40,7 +31,7 @@
                <h3><b>About You</b></h3>
             </div>
             <div class="w3-container w3-padding-large form-spacing-top">
-               {{ Form::textarea('about', null, array('class' => 'form-control'))}}
+               {{ Form::textarea('about', null, array('class' => 'form-control editor'))}}
             </div>
          </div>
          <hr>
@@ -50,7 +41,7 @@
                <h3><b>About Your Website</b></h3>
             </div>
             <div class="w3-container w3-padding-large form-spacing-top">
-               {{ Form::textarea('website', null, array('class' => 'form-control'))}}
+               {{ Form::textarea('website', null, array('class' => 'form-control editor'))}}
             </div>
          </div>
          <hr>
@@ -60,7 +51,7 @@
                <h3><b>Your Portfolio</b></h3>
             </div>
             <div class="w3-container w3-padding-large form-spacing-top">
-               {{ Form::textarea('portfolio', null, array('class' => 'form-control'))}}
+               {{ Form::textarea('portfolio', null, array('class' => 'form-control editor'))}}
             </div>
          </div>
          <hr>
@@ -77,8 +68,4 @@
       </div>
    </div>
 </div>
-@endsection
-@section('scripts')
-  {!! Html::script('js/parsley.min.js') !!}
-  {!! Html::script('js/trumbowyg.min.js') !!}
 @endsection

@@ -1,4 +1,4 @@
-@extends('main')
+@extends('_layout')
 
 @section('title', " | $tag->name Tag")
 

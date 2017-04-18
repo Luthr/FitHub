@@ -1,20 +1,7 @@
-@extends('main')
+@extends('_layout')
 
 @section('title', ' | Create New Post')
 
-@section('stylesheets')
-  {!! Html::style('css/parsley.css') !!}
-  {!! Html::style('css/select2.min.css') !!}
-  <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-
-  <script>
-    tinymce.init({
-      selector: "textarea",
-      plugins: "link",
-      menubar: false
-      });
-  </script>
-@endsection
 
 @section('content')
   <div class="container page-margin-top">
@@ -57,15 +44,4 @@
       </div>
     </div>
   </div>
-@endsection
-
-@section('footer')
-
-@section('scripts')
-  {!! Html::script('js/parsley.min.js') !!}
-  {!! Html::script('js/select2.min.js') !!}
-
-  <script type="text/javascript">
-    $(".select2-multi").select2();
-  </script>
 @endsection

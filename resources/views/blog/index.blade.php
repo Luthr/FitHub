@@ -1,5 +1,7 @@
-@extends('main')
+@extends('_layout')
+
 @section('title', " | Blog")
+
 @section('content')
 
   <!-- w3-content defines a container for fixed size centered content,
@@ -20,9 +22,7 @@
     @foreach ($posts as $post)
       <div class="w3-card-4 w3-margin w3-white post">
         @if ($post->image)
-          <div>
-           <img src="{{ asset('images/' . $post->image)}}" class='imagefit w3-hover-sepia'/>
-          </div>
+          <div class="post_index_image" style="background-image: url({{ asset('images/' . $post->image)}})"><div class="image_overlay"></div></div>
         @endif
 
 

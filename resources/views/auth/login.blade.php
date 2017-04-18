@@ -1,5 +1,7 @@
-@extends('main')
+@extends('_layout')
+
 @section('title', " | Login")
+
 @section('content')
 <div class="container">
     <div class="row page-margin-top">

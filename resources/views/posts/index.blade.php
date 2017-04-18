@@ -1,4 +1,4 @@
-@extends('main')
+@extends('_layout')
 
 @section('title', ' | All Posts')
 
@@ -38,7 +38,7 @@
 
       </table>
       <div class="text-center">
-        {!! $posts->links(); !!}
+        {!! $posts->links() !!}
       </div>
 
     </div>

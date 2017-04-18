@@ -1,8 +1,8 @@
-@extends ('main')
-@section('title', ' | Homepage')
-@section('content')
+@extends('_layout')
 
-</div>
+@section('title', ' | Homepage')
+
+@section('content')
 
 <!-- First Parallax Image with Logo Text -->
 <div class="mainimg w3-container w3-opacity-min" id="home">
@@ -167,3 +167,5 @@
 <!-- End Grid/Pricing tables -->
 </div>
 </div>
+
+  @endsection

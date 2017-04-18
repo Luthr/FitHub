@@ -1,5 +1,7 @@
-@extends ('main')
+@extends('_layout')
+
 @section('title', ' | Contact Us')
+
 @section('content')
   <div class="container page-margin-top">
       <div class="row">

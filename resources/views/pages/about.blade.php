@@ -1,5 +1,4 @@
-
-@extends('main')
+@extends('_layout')
 @section('title', ' | Homepage')
 @section('content')
 

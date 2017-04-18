@@ -1,4 +1,4 @@
-@extends('main')
+@extends('_layout')
 @section('title', ' | View Post')
 @section('content')
   <div class="w3-content" style="max-width:1400px">

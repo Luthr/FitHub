@@ -1,5 +1,7 @@
-@extends('main')
+@extends('_layout')
+
 @section('title', " | Registration")
+
 @section('content')
 <div class="container">
     <div class="row">

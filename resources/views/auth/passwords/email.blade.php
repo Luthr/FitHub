@@ -1,5 +1,7 @@
-@extends('main')
+@extends('_layout')
+
 @section('title', " | Password Reset")
+
 @section('content')
 <div class="container">
     <div class="row">
