@@ -60,7 +60,7 @@ class PostController extends Controller
     {
         // validate the data
         $this->validate($request, array(
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:posts,title',
             'category_id' => 'required|integer',
             'slected_image' => 'sometimes|image',
             'body' => 'required'
@@ -83,7 +83,7 @@ class PostController extends Controller
         Session::flash('success', 'The post was succesfully saved!'); //flash= only let it exist for one request
         // redirect to another page
         // passes post id
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->route('posts.show', $post->slug);
     }
 
     /**
@@ -121,7 +121,6 @@ class PostController extends Controller
     {
         $this->validate($request, array(
             'title' => 'required|max:255',
-            'slug' => "required|alpha_dash|min:5|max:255|unique:posts,slug, $id",
             'category_id' => 'required|integer',
             'body' => 'required',
             'selected_image' => 'sometimes|image'
@@ -146,7 +145,7 @@ class PostController extends Controller
         // Set flash data with success message
         Session::flash('success', 'Post Update Successful');
         // Redirect with flash data to posts.show
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->route('posts.show', $post->slug);
     }
 
     /**
