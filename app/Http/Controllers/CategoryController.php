@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Category;
 use Session;
 
+/**
+ * Class CategoryController
+ * @package App\Http\Controllers
+ */
 class CategoryController extends Controller
 {
-    public function __construct() {
-      $this->middleware('auth');
+
+    /**
+     * CategoryController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +39,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -38,11 +47,9 @@ class CategoryController extends Controller
         //Save a new category into the database and then redirect back to index
         $this->validate($request, array(
             'name' => 'required|max:255'
-          ));
+        ));
         // store in database
-        $category = new Category;
-
-        $category->name = $request->name;
+        $category = new Category($request->all());
         $category->save();
 
         Session::flash('success', 'New Category Created!'); //flash= only let it exist for one request
@@ -52,62 +59,51 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return mixed
      */
-    public function show($id)
+    public function show(Category $category)
     {
-      $category = Category::find($id);
-      return view('categories.show')->withCategory($category);
+        return view('categories.show')->withCategory($category);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return mixed
      */
-    public function edit($id)
-      {
-        $category = Category::find($id);
+    public function edit(Category $category)
+    {
         return view('category.edit')->withCategory($category);
-      }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-      $category = Category::find($id);
-
-      $this->validate($request,
-          ['name' => 'required|max:20']);
-
-      $category->name = $request->name;
-
-      $category->save();
-
-      Session::flash('success', 'Catgory Update Successful');
-      // Redirect with flash data to categories index
-      return redirect()->route('category.show', $category->id);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, Category $category)
+    {
+
+        $this->validate($request,
+            ['name' => 'required|max:20']);
+
+        $category->name = $request->name;
+
+        $category->save();
+
+        Session::flash('success', 'Catgory Update Successful');
+        // Redirect with flash data to categories index
+        return redirect()->route('category.show', $category->id);
+    }
+
+    /**
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Category $category)
     {
-      $category->delete();
-      Session::flash('success', 'Category Successfully Deleted');
-      return redirect()->route('category.index');
+        $category->delete();
+        Session::flash('success', 'Category Successfully Deleted');
+        return redirect()->route('category.index');
     }
 }

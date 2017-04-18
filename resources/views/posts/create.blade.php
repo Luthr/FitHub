@@ -13,8 +13,6 @@
       {{ Form::label('title', 'Title:')}}
         {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))}}
 
-        {{ Form::label('slug', 'Post Heading:')}}
-        {{ Form::text('slug', null, array('class'=> 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255'))}}
 
         {{ Form::label('category', "Category:")}}
         <select class="form-control" name="category_id">
