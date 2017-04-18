@@ -80,5 +80,5 @@
 @endsection
 @section('scripts')
   {!! Html::script('js/parsley.min.js') !!}
-	</script>
+  {!! Html::script('js/trumbowyg.min.js') !!}
 @endsection

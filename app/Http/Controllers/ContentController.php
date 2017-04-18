@@ -11,6 +11,10 @@ use Storage;
 
 class ContentController extends Controller
 {
+
+  public function __construct() {
+    $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -95,7 +99,7 @@ class ContentController extends Controller
         // Add the new photo
         $image = $request->file('image');
         $filename = time() . '.' . $image->getClientOriginalExtension();
-        $location = public_path('images/' . $filename);
+        $location = public_path('images/profile/' . $filename);
         Image::make($image)->resize(800,400)->save($location);
         $previousFilename = $content->image;
         // Update the image name within posts database
