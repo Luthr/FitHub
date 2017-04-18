@@ -16,23 +16,23 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-  // ie: domain/blog/slug-goes-here
-  Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])
-    ->where('slug', '[\w\d\-\_]+');
+    // ie: domain/blog/slug-goes-here
+    Route::get('blog', ['uses' => 'BlogController@index', 'as' => 'blog.index']);
+    Route::get('blog/{post}', ['as' => 'blog.single', 'uses' => 'BlogController@show'])
+        ->where('post', '[\w\d\-\_]+');
 
-  Route::get('contact', 'PagesController@getContact');
-  Route::post('contact', 'PagesController@postContact');
+    Route::get('contact', 'PagesController@getContact');
+    Route::post('contact', 'PagesController@postContact');
 
-  Route::get('about', 'PagesController@getAbout');
-  Route::get('/', ['uses' => 'PagesController@getindex', 'as' => 'pages.welcome']);
-  Route::get('blog', ['uses' => 'BlogController@getindex', 'as' => 'blog.index']);
+    Route::get('about', 'PagesController@getAbout');
+    Route::get('/', ['uses' => 'PagesController@getindex', 'as' => 'pages.welcome']);
 
-  // Posts/Categorires/Tag Crud
-  Route::resource('posts', 'PostController');
-  Route::resource('category', 'CategoryController', ['except'=> ['create']]);
-  Route::resource('tags', 'TagController', ['except'=> ['create']]);
-  Route::resource('content', 'ContentController');
-  //shortcut for defining auth/reg/reset routes
-  Auth::routes();
+    // Posts/Categorires/Tag Crud
+    Route::resource('posts', 'PostController');
+    Route::resource('category', 'CategoryController', ['except' => ['create']]);
+    Route::resource('tags', 'TagController', ['except' => ['create']]);
+    Route::resource('content', 'ContentController');
+    //shortcut for defining auth/reg/reset routes
+    Auth::routes();
 
 });
