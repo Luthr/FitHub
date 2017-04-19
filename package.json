@@ -18,8 +18,10 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.6.4",
     "dropzone": "^4.3.0",
     "font-awesome": "^4.7.0",
+    "moment": "^2.18.1",
     "parsleyjs": "^2.7.0",
     "select2": "^4.0.3",
     "trumbowyg": "^2.5.1",

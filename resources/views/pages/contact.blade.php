@@ -12,13 +12,13 @@
           </header>
           <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="{{ url('contact') }}" method="POST">
             {{ csrf_field() }}
-            <div class="form-group w3-container form-spacing-top">
+            <div class="form-group w3-container form-spacing-top" data-parsley-validate =''>
               <div class="col-sm-6">
               <div class="input-group">
                 <div class="input-group-addon">
                   <i class="fa fa-user"></i>
                 </div>
-                <input id="firstname" name="firstname" class="form-control" placeholder="Enter first name">
+                <input id="firstname" name="firstname" class="form-control" placeholder="Enter first name" required = '', maxlength = '255'>
               </div>
             </div>
 
@@ -27,23 +27,23 @@
                 <div class="input-group-addon">
                   <i class="fa fa-user"></i>
                 </div>
-                <input id="lastname" name="lastname" class="form-control" placeholder="Enter last name">
+                <input id="lastname" name="lastname" class="form-control" placeholder="Enter last name" required = '', maxlength = '255'>
               </div>
             </div>
           </div>
 
 
-            <div class="form-group w3-container">
+            <div class="form-group w3-container" data-parsley-validate =''>
               <div class="col-sm-12">
               <div class="input-group">
                 <div class="input-group-addon">
                   <i class="fa fa-envelope"></i>
                 </div>
-                <input id="email" name="email" class="form-control" placeholder="Enter email">
+                <input id="email" name="email" class="form-control" placeholder="Enter email" required = '', maxlength = '255' >
               </div>
             </div>
           </div>
-          <div class="form-group w3-container">
+          <div class="form-group w3-container" data-parsley-validate =''>
             <div class="col-sm-12">
             <div class="input-group">
               <div class="input-group-addon">
@@ -54,24 +54,24 @@
           </div>
         </div>
 
-        <div class="form-group w3-container">
+        <div class="form-group w3-container" data-parsley-validate =''>
           <div class="col-sm-12">
           <div class="input-group">
             <div class="input-group-addon">
               <i class="fa fa-cog "></i>
             </div>
-            <input id="subject" name="subject" class="form-control" placeholder="Enter message subject">
+            <input id="subject" name="subject" class="form-control" placeholder="Enter message subject" required = '', maxlength = '255'>
           </div>
         </div>
       </div>
 
-        <div class="form-group w3-container">
+        <div class="form-group w3-container" data-parsley-validate =''>
           <div class="col-sm-12">
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-comment fa-2"></i>
               </div>
-              <textarea class="form-control" name="message" id="message" rows="5" style="width:100%" placeholder="Enter your message here"></textarea>
+              <textarea class="form-control" name="message" id="message" rows="5" style="width:100%" placeholder="Enter your message here" required = '', maxlength = '255'></textarea>
             </div>
           </div>
         <div class='w3-container w3-padding-16'>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Schedule;
 use Illuminate\Http\Request;
 use App\Content;
 use Mail;
@@ -30,17 +31,35 @@ class PagesController extends Controller
      */
     public function getIndex()
     {
+
+        $dayTimeSchedule = [];
+
+        foreach (Schedule::all() as $daySchedule) {
+            $dayTimeSchedule[$daySchedule->id] = [
+                'morning' => $daySchedule->morning,
+                'afternoon' => $daySchedule->afternoon,
+                'evening' => $daySchedule->evening,
+            ];
+        }
+
+        $dayTimeSchedule = json_encode($dayTimeSchedule, JSON_UNESCAPED_SLASHES);
+
+
+        $daysDisabled = Schedule::where([
+            'morning' => 0,
+            'afternoon' => 0,
+            'evening' => 0,
+        ])->get()->pluck('id')->map(function($value){return $value - 1;})->implode(',');
+
+        $daysHighlighted = Schedule::where([
+            'morning' => 1,
+            'afternoon' => 1,
+            'evening' => 1,
+        ])->get()->pluck('id')->map(function($value){return $value - 1;})->implode(',');
+
         $content = Content::find(1);
         // return view and pass in posts
-        return view('pages.welcome')->withContent($content);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getAbout()
-    {
-        return view('pages.about');
+        return view('pages.welcome', compact('content', 'daysDisabled', 'daysHighlighted', 'dayTimeSchedule'));
     }
 
     /**

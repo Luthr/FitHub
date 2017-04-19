@@ -11,6 +11,7 @@
 @import "~trumbowyg/dist/ui/sass/trumbowyg.scss";
 @import "~font-awesome/css/font-awesome.min.css";
 @import "~w3-css/w3.css";
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker3.css";
 //
 
 
@@ -98,11 +99,6 @@ body, html {
   min-height: 500px;
 }
 
-/* Fourth image (Contact) */
-.contactimg {
-  background-image: url("/images/contact.jpeg");
-  min-height: 500px;
-}
 
 .w3-wide {letter-spacing: 10px;}
 .w3-hover-opacity {cursor: pointer;}
@@ -155,7 +151,7 @@ textarea.parsley-error {
   margin: 2px 0 3px;
   padding: 0;
   list-style-type: none;
-  font-size: 0.9em;
+  font-size: 0.1em;
   line-height: 0.9em;
   opacity: 0;
 

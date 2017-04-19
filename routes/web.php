@@ -24,7 +24,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('contact', 'PagesController@getContact');
     Route::post('contact', 'PagesController@postContact');
 
-    Route::get('about', 'PagesController@getAbout');
     Route::get('/', ['uses' => 'PagesController@getindex', 'as' => 'pages.welcome']);
 
     // Posts/Categorires/Tag Crud
@@ -34,5 +33,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('content', 'ContentController');
     //shortcut for defining auth/reg/reset routes
     Auth::routes();
+
+    Route::put('/update-schedule')->name('schedule.update')->uses('ScheduleController@update')->middleware('auth');
+    Route::get('/edit-schedule')->name('schedule.edit')->uses('ScheduleController@edit')->middleware('auth');
+
+    Route::post('/booking')->name('booking.store')->uses('BookingController@store')->middleware('throttle:20,100');
+    // middleware "throttle:20,100" means :
+    // If submitted more than 20 times in one minute, block that ip for 100 minutes.
 
 });

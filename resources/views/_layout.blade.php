@@ -17,11 +17,12 @@
 </head>
 <body class="w3-light-grey">
     @include('partials._nav')
-    @include('partials._messages')
     <div class="w3-container">
+    @include('partials._messages')
+    </div>
         @yield('content')
         @include('partials._footer')
-    </div>
+
     <a href="#" class="scrollToTop">Scroll To Top</a>
     <script src="{{ mix('/js/app.js') }}" type="text/javascript"></script>
     @yield('scripts')

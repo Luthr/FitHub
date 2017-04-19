@@ -18,7 +18,9 @@ class Content extends Model
         'image',
         'about',
         'website',
-        'portfolio'
+        'portfolio',
+        'booking',
+
     ];
 
 }

@@ -92,6 +92,7 @@ class ContentController extends Controller
             'about' => 'required',
             'website' => 'required',
             'portfolio' => 'required',
+            'booking' => 'required',
         ));
 
         // Save the data to the database
@@ -101,8 +102,8 @@ class ContentController extends Controller
             // Add the new photo
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/profile/' . $filename);
-            Image::make($image)->resize(800, 400)->save($location);
+            $location = public_path('images/' . $filename);
+            Image::make($image)->save($location);
             // Delete the old photo
             Storage::delete($content->image);
             // Update the image name within posts database

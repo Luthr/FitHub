@@ -8,7 +8,7 @@
       <!-- Blog entries -->
       <div class="w3-col w3-margin">
          <h1>Update Your Homepage</h1>
-         <h5>Text below will amend the relevent section within your Homepage <span class="w3-opacity">April 7, 2014</span></h5>
+         <h5>Text below will amend the relevent section within your Homepage</h5>
          <hr>
          {!! Form::model($content, ['route' => ['content.update', 1], 'method' => 'PUT', 'files'=>true]) !!}
          <div class="w3-card-4 w3-white btn-bottom-space">
@@ -26,6 +26,7 @@
             </div>
          </div>
          <hr>
+         <!-- About entry -->
          <div class="w3-card-4 w3-white btn-bottom-space">
             <div class="w3-container w3-padding-large">
                <h3><b>About You</b></h3>
@@ -35,7 +36,7 @@
             </div>
          </div>
          <hr>
-         <!-- Blog entry -->
+         <!-- Website info entry -->
          <div class="w3-card-4 w3-white btn-bottom-space">
             <div class="w3-container w3-padding-large">
                <h3><b>About Your Website</b></h3>
@@ -45,13 +46,23 @@
             </div>
          </div>
          <hr>
-         <!-- Blog entry -->
+         <!-- Portfolio entry -->
          <div class="w3-card-4 w3-white btn-bottom-space">
             <div class="w3-container w3-padding-large">
                <h3><b>Your Portfolio</b></h3>
             </div>
             <div class="w3-container w3-padding-large form-spacing-top">
                {{ Form::textarea('portfolio', null, array('class' => 'form-control editor'))}}
+            </div>
+         </div>
+         <hr>
+         <!-- Booking entry -->
+         <div class="w3-card-4 w3-white btn-bottom-space">
+            <div class="w3-container w3-padding-large">
+               <h3><b>Your Booking Information</b></h3>
+            </div>
+            <div class="w3-container w3-padding-large form-spacing-top">
+               {{ Form::textarea('booking', null, array('class' => 'form-control editor'))}}
             </div>
          </div>
          <hr>
