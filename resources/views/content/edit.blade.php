@@ -10,7 +10,13 @@
          <h1>Update Your Homepage</h1>
          <h5>Text below will amend the relevent section within your Homepage</h5>
          <hr>
-         {!! Form::model($content, ['route' => ['content.update', 1], 'method' => 'PUT', 'files'=>true]) !!}
+         @if (isset($content) && $content->exists())
+
+            {!! Form::model($content, ['route' => ['content.update', $content->id], 'method' => 'PUT', 'files'=>true]) !!}
+         @else
+            {!! Form::open(['route' => ['content.store'], 'method' => 'POST', 'files'=>true]) !!}
+
+         @endif
          <div class="w3-card-4 w3-white btn-bottom-space">
             <div class="w3-container w3-padding-large">
                <h3><b>Your Personal Photo</b></h3>

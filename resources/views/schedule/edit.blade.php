@@ -21,8 +21,8 @@
                     <thead>
                     <tr>
                         <th>{{ Form::label('day[' . $day->id . '][morning]', "Morning:") }}</th>
-                        <th>{{ Form::label('day[' . $day->id . '][afternoon]', "afternoon:") }}</th>
-                        <th>{{ Form::label('day[' . $day->id . '][evening]', "evening:") }}</th>
+                        <th>{{ Form::label('day[' . $day->id . '][afternoon]', "Afternoon:") }}</th>
+                        <th>{{ Form::label('day[' . $day->id . '][evening]', "Evening:") }}</th>
                     </tr>
                     </thead>
                     <tbody>

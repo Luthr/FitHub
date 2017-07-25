@@ -103,7 +103,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = Category::all()->pluck('name')->all();
+        $categories = Category::all()->pluck('name', 'id')->all();
         $tags = Tag::all()->pluck('name')->all();
 
         // return the view and pass in the var we previously created

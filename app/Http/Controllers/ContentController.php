@@ -40,6 +40,7 @@ class ContentController extends Controller
      */
     public function create()
     {
+        return view('content.edit')->withContent(new Content());
         //
     }
 
@@ -51,6 +52,37 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, array(
+            'image' => 'sometimes|image',
+            'about' => 'required',
+            'website' => 'required',
+            'portfolio' => 'required',
+            'booking' => 'required',
+        ));
+
+        $content = new Content($request->only(['about', 'website', 'portfolio', 'booking']));
+
+//        $content = Content::create($request->only(['about', 'website', 'portfolio', 'booking']));
+
+        if ($request->hasFile('image')) {
+            // Add the new photo
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->save($location);
+            // Delete the old photo
+            Storage::delete($content->image);
+            // Update the image name within posts database
+            $content->image = $filename;
+        }
+        // Save the data to the database
+        $content->save();
+        // Set flash data with success message
+        Session::flash('success', 'Content Update Successful');
+        // Redirect with flash data to posts.show
+        return redirect()->route('pages.welcome');
+
         //
 
     }
@@ -86,7 +118,7 @@ class ContentController extends Controller
      */
     public function update(Content $content, Request $request)
     {
-        // $content = Content::find($id);
+
         $this->validate($request, array(
             'image' => 'sometimes|image',
             'about' => 'required',

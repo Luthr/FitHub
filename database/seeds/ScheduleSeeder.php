@@ -30,8 +30,11 @@ class ScheduleSeeder extends Seeder
     public function run()
     {
         foreach ($this->days as $day) {
-            $schedule = new \App\Schedule(['day' => $day]);
-            $schedule->save();
+            if (!\App\Schedule::where('day', $day)->exists()) {
+                $schedule = new \App\Schedule(['day' => $day]);
+                $schedule->save();
+            }
+
         }
         //
     }

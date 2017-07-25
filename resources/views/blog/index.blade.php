@@ -10,7 +10,7 @@
   <!-- Header -->
   <header class="w3-container w3-center w3-padding-32 page-margin-top">
     <h1><b>MY BLOG</b></h1>
-    <p>Welcome to the blog of  <span class="w3-tag">Dean</span></p>
+    <p>Welcome to the blog of  <span class="w3-tag">{{ config('') }}</span></p>
   </header>
 
   <!-- Grid -->
@@ -27,9 +27,9 @@
 
 
         <div class="w3-container">
-          <h3 class='form-spacing-top'>{{  $post->title }}</h3>
-          <h6 class='form-spacing-top'>{{ $post->category->name }}</h6>
-          <h5{{ $post->category->name }}, <span class="w3-opacity">{{ date('M j, Y', strtotime($post->created_at))}}</span></h5>
+          {{--<h3 class='form-spacing-top'>{{  $post->title }}</h3>--}}
+          {{--<h6 class='form-spacing-top'>{{ $post->category->name }}</h6>--}}
+          {{--<h5{{ $post->category->name }}, <span class="w3-opacity">{{ date('M j, Y', strtotime($post->created_at))}}</span></h5>--}}
         </div>
 
         <div class="w3-container">

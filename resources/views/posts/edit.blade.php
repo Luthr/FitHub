@@ -11,7 +11,7 @@
 
 
 			{{ Form::label('category_id', "Category:", ['class' => 'form-spacing-top']) }}
-			{{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
+			{{ Form::select('category_id', $categories, $post->category_id, ['class' => 'form-control']) }}
 
 			{{ Form::label('tags', 'Tags:', ['class' => 'form-spacing-top']) }}
 			{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple']) }}
