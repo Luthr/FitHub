@@ -21,9 +21,9 @@
           </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                @if (auth::check())
+                @if (auth()->check())
                     <li class="dropdown">
-                        <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{auth::user()->name }} <span class="caret"></span></a>
+                        <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{auth()->user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('content.edit', [1])}}">Home Content</a></li>
                             <li><a href="{{ route('posts.index')}}">Posts</a></li>
