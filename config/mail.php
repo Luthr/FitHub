@@ -60,6 +60,8 @@ return [
         'name' => env('MAIL_FROM_NAME', 'FitHub'),
     ],
 
+
+
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol

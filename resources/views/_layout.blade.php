@@ -16,15 +16,14 @@
 
 </head>
 <body class="w3-light-grey">
-    @include('partials._nav')
-    <div class="w3-container">
-    @include('partials._messages')
-    </div>
+    <div class="page-margin-top">
+        @include('partials._nav')
+        @include('partials._messages')
         @yield('content')
         @include('partials._footer')
-
-    <a href="#" class="scrollToTop">Scroll To Top</a>
-    <script src="{{ mix('/js/app.js') }}" type="text/javascript"></script>
-    @yield('scripts')
+        <a href="#" class="scrollToTop">Scroll To Top</a>
+    </div>
 </body>
+<script src="{{ mix('/js/app.js') }}" type="text/javascript"></script>
+@yield('scripts')
 </html>

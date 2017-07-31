@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactForm;
 use App\Schedule;
 use Illuminate\Http\Request;
 use App\Content;
@@ -76,21 +77,20 @@ class PagesController extends Controller
      */
     public function postContact(Request $request)
     {
-        $this->validate($request, [
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|email',
-            'phone' => 'sometimes',
-            'subject' => 'min:4|max:30',
-            'message' => 'required']);
+        $rules = [
+            'fullname' => 'required|string|max:255',
+            'email' => 'required_without:phone|nullable|email',
+            'phone' => 'required_without:email|nullable|digits:9,12',
+            'message' => 'required|string|max:4000'
+        ];
 
-        Mail::send('emails.contact', $request->all(), function ($message) use ($request) {
-            $message->from($request->get('email'));
-            $message->to('fithub.now@gmail.com');
-            $message->subject($request->get('subject'));
-        });
+        $this->validate($request, $rules);
+
+//        dd($request->only(array_keys($rules)));
+
+        Mail::send(new ContactForm($request->only(array_keys($rules))));
 
         Session::flash('success', 'Your Email Has Been Sent!');
-        return redirect('/');
+        return redirect('/contact');
     }
 }

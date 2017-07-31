@@ -3,84 +3,63 @@
 @section('title', ' | Contact Us')
 
 @section('content')
-  <div class="container page-margin-top">
-      <div class="row">
+    <div class="row">
         <div class="col-md-12">
-          <header class="w3-container w3-center w3-padding-32">
-            <h1><b>Contact</b></h1>
-            <p>Leave me message</p>
-          </header>
-          <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="{{ url('contact') }}" method="POST">
-            {{ csrf_field() }}
-            <div class="form-group w3-container form-spacing-top" data-parsley-validate =''>
-              <div class="col-sm-6">
-              <div class="input-group">
-                <div class="input-group-addon">
-                  <i class="fa fa-user"></i>
-                </div>
-                <input id="firstname" name="firstname" class="form-control" placeholder="Enter first name" required = '', maxlength = '255'>
-              </div>
+            <header class="w3-container w3-center">
+                <h1><b>Contact</b></h1>
+                <p>Leave me message</p>
+            </header>
+            <div class="w3-container w3-card-4 w3-padding-16 w3-white">
+                <form class="form-horizontal" action="/contact" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group{{ $errors->has('fullname') ? ' has-error' : '' }}">
+                        <label for="inputFullname" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputFullname" name="fullname"
+                                   placeholder="Name" value="{{ old('fullname') }}">
+                            @if ($errors->has('fullname'))
+                                <small class="text-danger">{{ $errors->first('fullname') }}</small>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail" name="email"
+                                   placeholder="Email" value="{{ old('email') }}">
+                            @if ($errors->has('email'))
+                                <small class="text-danger">{{ $errors->first('email') }}</small>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                        <label for="inputPhone" class="col-sm-2 control-label">Telephone</label>
+                        <div class="col-sm-10">
+                            <input type="tel" class="form-control" id="inputPhone" name="phone"
+                                   placeholder="Telephone" value="{{ old('phone') }}">
+                            @if ($errors->has('phone'))
+                                <small class="text-danger">{{ $errors->first('phone') }}</small>
+                            @endif
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
+                        <label for="inputMessage" class="col-sm-2 control-label">Message</label>
+                        <div class="col-sm-10">
+                                <textarea class="form-control" id="inputMessage" name="message"
+                                          placeholder="Message">{{ old('message') }}</textarea>
+                            @if ($errors->has('message'))
+                                <small class="text-danger">{{ $errors->first('message') }}</small>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Send Message</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div class="col-sm-6">
-              <div class="input-group ">
-                <div class="input-group-addon">
-                  <i class="fa fa-user"></i>
-                </div>
-                <input id="lastname" name="lastname" class="form-control" placeholder="Enter last name" required = '', maxlength = '255'>
-              </div>
-            </div>
-          </div>
-
-
-            <div class="form-group w3-container" data-parsley-validate =''>
-              <div class="col-sm-12">
-              <div class="input-group">
-                <div class="input-group-addon">
-                  <i class="fa fa-envelope"></i>
-                </div>
-                <input id="email" name="email" class="form-control" placeholder="Enter email" required = '', maxlength = '255' >
-              </div>
-            </div>
-          </div>
-          <div class="form-group w3-container" data-parsley-validate =''>
-            <div class="col-sm-12">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-phone"></i>
-              </div>
-              <input id="phone" name="phone" class="form-control" placeholder="Enter contact number">
-            </div>
-          </div>
         </div>
-
-        <div class="form-group w3-container" data-parsley-validate =''>
-          <div class="col-sm-12">
-          <div class="input-group">
-            <div class="input-group-addon">
-              <i class="fa fa-cog "></i>
-            </div>
-            <input id="subject" name="subject" class="form-control" placeholder="Enter message subject" required = '', maxlength = '255'>
-          </div>
-        </div>
-      </div>
-
-        <div class="form-group w3-container" data-parsley-validate =''>
-          <div class="col-sm-12">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-comment fa-2"></i>
-              </div>
-              <textarea class="form-control" name="message" id="message" rows="5" style="width:100%" placeholder="Enter your message here" required = '', maxlength = '255'></textarea>
-            </div>
-          </div>
-        <div class='w3-container w3-padding-16'>
-          <input type="submit" value="Send Message" class="form-spacing-top btn btn-success">
-        </div>
-          </div>
-          </form>
-      </div>
-
     </div>
-  </div>
 @endsection

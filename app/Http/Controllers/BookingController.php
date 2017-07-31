@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Mail\NewBooking;
 use Illuminate\Http\Request;
 
 /**
@@ -30,11 +31,7 @@ class BookingController extends Controller
         $booking = new Booking($request->all());
         $booking->save();
 
-        \Mail::send('emails.booking', $request->all(), function ($message) use ($request) {
-            $message->from($request->get('email'));
-            $message->to('fithub.now@gmail.com');
-            $message->subject('New Booking Request');
-        });
+        \Mail::send(new NewBooking($booking));
 
         \Session::flash('success', "Your booking has been placed, we'll be in contact to confirm the details");
 

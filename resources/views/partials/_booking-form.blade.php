@@ -2,17 +2,17 @@
 {!! Form::open(['route' => 'booking.store', 'class' => 'form-horizontal', 'id' => 'booking_form']) !!}
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
+        <div class="col-sm-4 text-center">
+            <div class="datepicker-container">
                 <div id="datepicker" data-provide="datepicker">
                     <input type="hidden" name="date" value="{{ old('date') }}">
                 </div>
+                @if($errors->has('date'))
+                    <div class="alert alert-danger">{{ $errors->first('date') }}</div>
+                @endif
             </div>
-            @if($errors->has('date'))
-                <div class="alert alert-danger">{{ $errors->first('date') }}</div>
-            @endif
         </div>
-        <div class="col-md-8">
+        <div class="col-sm-8">
             <div class="form-group {{ $errors->has('timeofday') ? 'has-error' : '' }}">
                 <label for="timeofday" class="col-sm-2 control-label">Time of Day</label>
                 <div class="col-sm-10">

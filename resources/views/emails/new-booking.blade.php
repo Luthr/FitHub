@@ -1,17 +1,18 @@
 @component('mail::message')
-    # Contact Form Submission
+    # You have a new booking
 
 @component('mail::table')
     |        |          |
     | ------------- |:-------------:|
-    | Name          | {{ $fullname }} |
-    | Email         | {{ $email or 'None' }} |
-    | Phone         | {{ $phone or 'None' }} |
+    | Name          | {{ $name }} |
+    | Email         | {{ $email }} |
+    | Date          | {{ $date }} |
+    | Time          | {{ $timeofday }} |
 @endcomponent
 
 
 @component('mail::panel')
-    {{ $message }}
+    {{ $info }}
 @endcomponent
 
 

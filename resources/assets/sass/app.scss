@@ -51,7 +51,7 @@ body, html {
 }
 
 .page-margin-top{
-  margin-top:100px
+  margin-top:50px
 }
 
 .form-spacing-top {
@@ -188,4 +188,10 @@ textarea.parsley-error {
   left: 0;
   background: rgba(0,0,0,0.5);
   transition: background linear 0.3s;
+}
+
+.datepicker-container {
+  margin: 0 auto;
+  display: block;
+  width: 210px;
 }

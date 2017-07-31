@@ -1,16 +1,10 @@
 @if (Session::has('success') )
-  <br>
-  <br>
   <div class="alert alert-success" role="alert">
     <strong>Success:</strong> {{ Session::get('success') }}
   </div>
-
 @endif
 
-
 @if (count($errors) > 0)
-  <br>
-  <br>
   <div class="alert alert-danger" role="alert">
     <strong>Errors:</strong>
     <ul>
