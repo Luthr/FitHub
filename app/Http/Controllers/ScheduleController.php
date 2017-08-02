@@ -32,7 +32,7 @@ class ScheduleController extends Controller
 //        dd(array_merge(['a' => false, false, false], ['a' => true]));
         foreach (Schedule::orderBy('id')->get() as $id => $scheduleDay) {
 
-            $scheduleDay->update(array_get($selectedDays, $id + 1));
+            $scheduleDay->update(array_get($selectedDays, $scheduleDay->id));
             $scheduleDay->save();
         }
 //        dd($request->all(), $selectedDays, Schedule::orderBy('id')->get());
